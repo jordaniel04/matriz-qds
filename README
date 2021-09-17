@@ -1,0 +1,29 @@
+1. Clonar el proyecto git 
+$ git clone https://github.com/jordaniel04/matriz-qds.git
+
+2. Crear el build del proyecto
+./mvnw spring-boot:build-image
+
+3. Crear la el contenedor en docker
+docker build -t spring-maven-docker .
+
+4. Ejecutar la imagen creada
+docker run -d -p 8080:8080 --name spring-maven-docker spring-maven-docker
+
+5.Para el ejemplo de prueba:
+Puedes ejecutar el curl en el Postman...
+
+curl --location --request POST 'localhost:8080/api/qds/matrix/rotate' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "matrix": [
+        [
+            1,
+            2
+        ],
+        [
+            3,
+            4
+        ]
+    ]
+}'
